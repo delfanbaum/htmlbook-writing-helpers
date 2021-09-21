@@ -1,6 +1,8 @@
 {
 	"name": "htmlbook-writing-helpers",
 	"displayName": "htmlbook-writing-helpers",
+	"publisher": "delfanbaum",
+	"repository": "https://github.com/delfanbaum/htmlbook-writing-helpers",
 	"description": "Various helpers and commands for use when working in htmlbook",
 	"version": "0.0.1",
 	"engines": {
@@ -10,17 +12,32 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:htmlbook-writing-helpers.helloWorld"
+		"onCommand:htmlbook-writing-helpers.pasteWrapLink",
+		"onCommand:htmlbook-writing-helpers.pasteXref"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "htmlbook-writing-helpers.helloWorld",
-				"title": "Hello World"
+				"command": "htmlbook-writing-helpers.pasteWrapLink",
+				"title": "Wrap selected text with a clipboard text (for links!) (htmlbook)",
+				"when": "editorTextFocus && editorLangId == html"
+			},
+			{
+				"command": "htmlbook-writing-helpers.pasteXref",
+				"title": "Paste clipboad text as data-type=\"xref\" links (htmlbook)",
+				"when": "editorTextFocus && editorLangId == html"
 			}
 		]
 	},
+	"keybindings": [
+		{
+			"command": "htmlbook-writing-helpers.pasteWrapLink",
+			"key": "ctrl+shift+l",
+			"mac": "cmd+shift+l",
+			"when": "editorTextFocus && editorLangId == html"
+		}
+	],
 	"scripts": {
 		"vscode:prepublish": "npm run package",
 		"compile": "webpack",
